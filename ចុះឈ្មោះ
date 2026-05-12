@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký Vay Nhanh</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; display: flex; justify-content: center; padding: 20px; }
+        .loan-form { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); width: 100%; max-width: 450px; }
+        h2 { color: #2c3e50; text-align: center; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        .slider-container { background: #eef2f3; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .btn-submit { width: 100%; padding: 15px; background: #27ae60; color: white; border: none; border-radius: 6px; font-size: 18px; cursor: pointer; transition: 0.3s; }
+        .btn-submit:hover { background: #219150; }
+        .total-pay { font-size: 14px; color: #7f8c8d; margin-top: 10px; text-align: center; }
+    </style>
+</head>
+<body>
+
+<div class="loan-form">
+    <h2>ĐĂNG KÝ VAY NHANH</h2>
+    
+    <!-- Bước 1: Chọn khoản vay -->
+    <div class="slider-container">
+        <label>Số tiền vay: <span id="amountText">5,000,000</span>đ</label>
+        <input type="range" min="1000000" max="20000000" step="500000" value="5000000" oninput="updateAmount(this.value)">
+        <p class="total-pay">Ước tính trả mỗi tháng: <strong id="monthlyText">450,000đ</strong></p>
+    </div>
+
+    <!-- Bước 2: Thông tin cá nhân -->
+    <div class="input-group">
+        <label>Họ và tên</label>
+        <input type="text" placeholder="Nguyễn Văn A">
+    </div>
+    
+    <div class="input-group">
+        <label>Số điện thoại</label>
+        <input type="tel" placeholder="090xxxxxxx">
+    </div>
+
+    <div class="input-group">
+        <label>Số CCCD (12 số)</label>
+        <input type="text" placeholder="Nhập số căn cước">
+    </div>
+
+    <div class="input-group">
+        <label>Hình thức nhận tiền</label>
+        <select>
+            <option>Chuyển khoản ngân hàng</option>
+            <option>Ví điện tử (Momo/ZaloPay)</option>
+        </select>
+    </div>
+
+    <button class="btn-submit">NHẬN TIỀN NGAY</button>
+</div>
+
+<script>
+    function updateAmount(val) {
+        document.getElementById('amountText').innerText = parseInt(val).toLocaleString();
+        // Công thức giả định: (Tiền gốc / 12 tháng) + lãi 1%
+        let monthly = (val / 12) + (val * 0.01);
+        document.getElementById('monthlyText').innerText = Math.round(monthly).toLocaleString() + 'đ';
+    }
+</script>
+
+</body>
+</html>
